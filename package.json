@@ -7,7 +7,6 @@
     "fs-extra": "^4.0.1",
     "gulp": "^3.9.1",
     "gulp-server-livereload": "^1.9.2",
-    "gulp-webserver": "^0.9.1",
     "puppeteer": "^0.10.0"
   },
   "devDependencies": {},
