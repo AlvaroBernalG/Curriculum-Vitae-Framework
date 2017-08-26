@@ -9,7 +9,7 @@ const cv_path = `${dist_folder}${cv_name}`;
 
 const port = 8000
 
-gulp.task('webserver', function() {
+gulp.task('webserver', function () {
   return gulp.src('app')
     .pipe(webserver({
       livereload: true,
@@ -18,16 +18,16 @@ gulp.task('webserver', function() {
     }));
 });
 
-gulp.task('cv', async ()=>{
+gulp.task('cv', async () => {
 
-	const browser = await puppeteer.launch();
-    const page = await browser.newPage();
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
 
-	await page.goto(`http://localhost:${port}`, {waitUntil: 'networkidle'});
-	await fs.ensureDir(dist_folder)
-	await page.pdf({path: cv_path, format: 'A4', pageRanges: '1-1', 'printBackground': true});
+  await page.goto(`http://localhost:${port}`, { waitUntil: 'networkidle' });
+  await fs.ensureDir(dist_folder)
+  await page.pdf({ path: cv_path, format: 'A4', pageRanges: '1-1', 'printBackground': true });
 
-	browser.close();
+  browser.close();
 })
 
 gulp.task('build', ['webserver', 'cv'])
