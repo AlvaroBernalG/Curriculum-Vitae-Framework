@@ -1,0 +1,12 @@
+
+main,body,html{
+  padding:0px;
+  margin:0px;
+}
+body{
+  --body-width: 1000px;
+}
+body{
+  display: flex;
+  justify-content: center;
+}
