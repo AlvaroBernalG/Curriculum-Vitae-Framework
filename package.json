@@ -5,7 +5,7 @@
   "main": "main.js",
   "dependencies": {
     "fs-extra": "^4.0.1",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-server-livereload": "^1.9.2",
     "puppeteer": "^0.10.0"
   },
