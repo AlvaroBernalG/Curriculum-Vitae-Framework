@@ -2,18 +2,16 @@
   "name": "easy-cv",
   "version": "1.0.0",
   "description": "A framework for building curriculum vitaes",
-  "main": "main.js",
   "dependencies": {
     "fs-extra": "^4.0.1",
     "gulp": "^4.0.0",
     "gulp-server-livereload": "^1.9.2",
     "puppeteer": "^0.10.0"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "gulp",
     "build": "gulp build"
   },
-  "author": "",
+  "author": "Alvaro Bernal Gimeno",
   "license": "MIT"
 }
