@@ -1,33 +1,36 @@
 const gulp = require('gulp');
 const puppeteer = require('puppeteer');
 const fs = require('fs-extra');
-var webserver = require('gulp-server-livereload');
+const webserver = require('gulp-server-livereload');
 
-const dist_folder = './dist/';
-const cv_name = 'cv.pdf';
-const cv_path = `${dist_folder}${cv_name}`;
+function task_server() {
+  const port = 8000;
+  const app_path = './app';
 
-const port = 8000
-
-gulp.task('webserver', function () {
-  return gulp.src('app')
+  return gulp.src(app_path)
     .pipe(webserver({
       livereload: true,
       open: true,
       port,
     }));
-});
+}
 
-gulp.task('cv', async () => {
-
+async function task_pdf() {
+  const dist_folder = './dist/';
+  const cv_name = 'cv.pdf';
+  const cv_path = `${dist_folder}${cv_name}`;
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
   await page.goto(`http://localhost:${port}`, { waitUntil: 'networkidle' });
-  await fs.ensureDir(dist_folder)
+  await fs.ensureDir(dist_folder);
   await page.pdf({ path: cv_path, format: 'A4', pageRanges: '1-1', 'printBackground': true });
 
   browser.close();
-})
+}
 
-gulp.task('build', ['webserver', 'cv'])
+gulp.task('default', task_server);
+
+gulp.task('dev', task_server);
+
+gulp.task('build', gulp.series(task_server, task_pdf));
